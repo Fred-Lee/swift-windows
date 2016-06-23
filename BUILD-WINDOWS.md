@@ -133,7 +133,7 @@ cd $WORKDIR/build/NinjaMinGW/llvm
 cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE ../../../llvm
 
 ninja
-export PATH=$WORKDIR/build/NinjaMinGW/llvm/bin;$PATH
+export PATH=$WORKDIR/build/NinjaMinGW/llvm/bin:$PATH
 ```
 
 Build Swift
