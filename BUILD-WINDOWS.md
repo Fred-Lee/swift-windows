@@ -10,11 +10,9 @@ Environment
 
 Choose any directory for working directory
 ```
-(in VS2015 x64 Native Tool Command Prompt)
-set WORKDIR=<Your working directory>
-
-(in BASH shell)
+(in MinGW64 Command Prompt)
 export WORKDIR=<Your working directory>
+
 ```
 
 Install Packages
@@ -111,9 +109,9 @@ Copy %WORKDIR%/swift/misc/Windows-Clang.cmake in repository
 Build cmark
 -----------
 ```
-mkdir %WORKDIR%\build\NinjaMinGW\cmark
-cd %WORKDIR%\build\NinjaMinGW\cmark
-cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE ..\..\..\cmark
+mkdir -p $WORKDIR/build/NinjaMinGW/cmark
+cd $WORKDIR/build/NinjaMinGW/cmark
+cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE ../../../cmark
   (You may ignore the following messages)
     -- Could NOT find PythonInterp: Found unsuitable version "2.7.11", but required is at least "3" (found C:/Python27/python.exe)
     *** A python 3 interpreter is required to run the spec tests.
@@ -127,15 +125,15 @@ Build clang
 // You should run "VS2015 x64 Native Tool Command Prompt" in ADMINISTRATOR mode
 // to run mklink.exe.
 
-cd %WORKDIR%\llvm\tools
+cd $WORKDIR/llvm/tools
 mklink /d clang ..\..\clang
 
-mkdir %WORKDIR%\build\NinjaMSVC\llvm
-cd %WORKDIR%\build\NinjaMSVC\llvm
-cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE ..\..\..\llvm
+mkdir $WORKDIR/build/NinjaMinGW/llvm
+cd $WORKDIR/build/NinjaMinGW/llvm
+cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE ../../../llvm
 
 ninja
-set PATH=%WORKDIR%\build\NinjaMSVC\llvm\bin;%PATH%
+export PATH=$WORKDIR/build/NinjaMinGW/llvm/bin;$PATH
 ```
 
 Build Swift
