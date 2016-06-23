@@ -145,16 +145,17 @@ Build Swift
 // set PATH=%WORKDIR%\build\NinjaMinGW\llvm\bin;%PATH%;C:\Program Files (x86)\CMake\bin;c:\mingw64\bin;c:\Tool
 // set PKG_CONFIG_PATH=c:/pkg-config/conf
 
-mkdir %WORKDIR%\build\NinjaMSVC\swift\bin
-Following DLL's must be copied to %WORKDIR%/build/NinjaMSVC/swift/bin
-  cmark.dll  (can be found at %WORKDIR%\build\NinjaMSVC\cmark\src\Release)
-  icudt56.dll  (can be found at %WORKDIR%\icu\bin64)
+mkdir -p $WORKDIR/build/NinjaMinGW/swift/bin
+Following DLL's must be copied to $WORKDIR/build/NinjaMinGW/swift/bin
+  libcmark.dll  (can be found at $WORKDIR/build/NinjaMinGW/cmark/src)
+  icudt56.dll  (can be found at $WORKDIR/icu/bin64)
   icuin56.dll
   icuuc56.dll
+cp -p $WORKDIR/build/NinjaMinGW/cmark/src/libcmark.a $WORKDIR/swift
 
-cd %WORKDIR%\build\NinjaMinGW\swift
+cd $WORKDIR/build/NinjaMinGW/swift
 
-cmake -G Ninja ..\..\..\swift -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang  -DCMAKE_CXX_COMPILER=clang++ -DLIBXML2_LIBRARIES=%WORKDIR%\libxml2\lib\libxml2.a  -DLIBXML2_INCLUDE_DIR=%WORKDIR%\libxml2\include\libxml2  -DPKG_CONFIG_EXECUTABLE=c:\pkg-config\bin\pkg-config.exe -DICU_UC_INCLUDE_DIR=%WORKDIR%\icu\include -DICU_UC_LIBRARY=%WORKDIR%\icu\lib64\icuuc.lib -DICU_I18N_INCLUDE_DIR=%WORKDIR%\icu\include -DICU_I18N_LIBRARY=%WORKDIR%\icu\lib64\icuin.lib -DSWIFT_INCLUDE_DOCS=FALSE -DSWIFT_PATH_TO_CMARK_BUILD=%WORKDIR%\build\NinjaMinGW\cmark -DSWIFT_PATH_TO_CMARK_SOURCE=%WORKDIR%\cmark  ..\..\..\swift
+cmake -G Ninja ../../../swift -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang  -DCMAKE_CXX_COMPILER=clang++ -DLIBXML2_LIBRARIES=$WORKDIR/libxml2/lib/libxml2.a  -DLIBXML2_INCLUDE_DIR=$WORKDIR/libxml2/include/libxml2  -DPKG_CONFIG_EXECUTABLE=/c/pkg-config/bin/pkg-config.exe -DICU_UC_INCLUDE_DIR=$WORKDIR/icu/include -DICU_UC_LIBRARY=$WORKDIR/icu/lib64/icuuc.lib -DICU_I18N_INCLUDE_DIR=$WORKDIR/icu/include -DICU_I18N_LIBRARY=$WORKDIR/icu/lib64/icuin.lib -DSWIFT_INCLUDE_DOCS=FALSE -DSWIFT_PATH_TO_CMARK_BUILD=$WORKDIR/build/NinjaMinGW/cmark -DSWIFT_PATH_TO_CMARK_SOURCE=$WORKDIR/cmark  ../../../swift
 
 (In Cygwin64 Terminal)
 // change to the same directory
@@ -168,8 +169,9 @@ sed -e 's;swift/libcmark.a;build/NinjaMinGW/cmark/src/libcmark.a;g' \
 Run
   cp gyb.exe %WORKDIR%\swift\utils\gyb.exe
   cp -r C:\mingw64\x86_64-w64-mingw32-w64-mingw32  C:\msys64\usr
-  cp libgcc.a libgcc_eh.a C:\msys64\usr\x86_64-w64-mingw32\lib
-  cd C:\msys64\usr\x86_64-w64-mingw32\lib\; cp libstdc++-6.dll libstdc++.dll
+  //cp libgcc.a libgcc_eh.a C:\msys64\usr\x86_64-w64-mingw32\lib
+  //cd C:\msys64\usr\x86_64-w64-mingw32\lib\; cp libstdc++-6.dll libstdc++.dll
+
 
   cd %WORKDIR%\build\NinjaMinGW\swift
   // Building swift.exe, libswiftRuntime.a, libswiftStdlibStubs.a
