@@ -18,6 +18,10 @@ export WORKDIR=<Your working directory>
 Install Packages
 ----------------------
 ```
+pacman -S mingw-w64-x86_64-cmake
+pacman -S mingw-w64-x86_64-ninja
+pacman -S mingw-w64-x86_64-dlfcn
+
 Install cmake-3.5.2
   1) Download from https://cmake.org/download/
   2) set PATH=%PATH%;C:\Program Files (x86)\CMake\bin
