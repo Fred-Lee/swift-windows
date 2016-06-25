@@ -119,6 +119,9 @@ cmake -G Ninja -D CMAKE_BUILD_TYPE=RELEASE ../../../cmark
   (You may ignore the following messages)
     -- Could NOT find PythonInterp: Found unsuitable version "2.7.11", but required is at least "3" (found C:/Python27/python.exe)
     *** A python 3 interpreter is required to run the spec tests.
+cd src
+cp -p libcmark.dll.a libcmark.a
+cp -p libcmark.dll.a libcmark.a  $WORKDIR/swift/libcmark.a
     
 ninja
 ```
